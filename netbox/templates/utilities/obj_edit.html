@@ -35,13 +35,25 @@
             <div class="col-md-3">
                 <div style="position: fixed">
                     {% block buttons %}
-                        {% if obj.pk %}
-                            <p><button type="submit" name="_save" class="btn btn-success"><i class="fa fa-save"></i> Save</button></p>
-                        {% else %}
-                            <p><button type="submit" name="_create" class="btn btn-success"><i class="fa fa-plus"></i> Create</button></p>
-                            <p><button type="submit" name="_addanother" class="btn btn-primary"><i class="fa fa-plus"></i> Create and Add Another</button></p>
-                        {% endif %}
-                        <p><a href="{{ return_url }}" class="btn btn-default"><i class="fa fa-ban"></i> Cancel</a></p>
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i> Save
+                            </button>
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <button type="submit" name="_continue" class="btn btn-link">Save and Continue Editing</button>
+                                    {% if enable_add_another %}
+                                        <button type="submit" name="_addanother" class="btn btn-link">Save and Add Another</button>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                        <div style="margin-top: 12px">
+                            <a href="{{ return_url }}" class="btn btn-default"><i class="fa fa-ban"></i> Cancel</a>
+                        </div>
                     {% endblock %}
                 </div>
             </div>
